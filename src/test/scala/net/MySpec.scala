@@ -1,9 +1,13 @@
 package net
 
-import org.scalacheck.Gen 
+import org.scalacheck.Gen
 import Gen.const          // A          => Gen[A]
 import Gen.choose         // (Int, Int) => Gen[Int]*
 import Gen.posNum         // Gen[Int] 
+import org.scalacheck.Prop
+import Prop.forAll
+
+import MyList.reverse
 
 object MySpec {
 
@@ -33,7 +37,9 @@ object MySpec {
 			list <- genList(gen, depth-1)
 			a    <- gen
 		} yield Cons(a, list)
+
+	// Reversing MyList twice equals the same list
+	val reverse2x: Prop = forAll(genListInt) { (list: MyList[Int]) => 
+		reverse( reverse( list ) ) == list
+	}
 }
-
-
-// http://stackoverflow.com/questions/42810351/testing-recursive-data-structure/42816037#42816037
