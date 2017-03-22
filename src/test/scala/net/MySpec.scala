@@ -5,7 +5,7 @@ import Gen.const          // A          => Gen[A]
 import Gen.choose         // (Int, Int) => Gen[Int]*
 import Gen.posNum         // Gen[Int] 
 import org.scalacheck.Prop
-import Prop.forAll
+import Prop.forAll        // Gen[A]     => Prop*
 
 import MyList.reverse
 
@@ -39,7 +39,12 @@ object MySpec {
 		} yield Cons(a, list)
 
 	// Reversing MyList twice equals the same list
-	val reverse2x: Prop = forAll(genListInt) { (list: MyList[Int]) => 
+	val reverse2xSame: Prop = forAll(genListInt) { (list: MyList[Int]) => 
 		reverse( reverse( list ) ) == list
+	}
+
+	// A reversed List equals the same list
+	val reverse1xSame: Prop = forAll(genListInt) { (list: MyList[Int]) => 
+		reverse( list ) == list
 	}
 }
