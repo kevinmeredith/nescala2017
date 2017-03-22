@@ -42,6 +42,14 @@ case class Cons[+A](elem: A, rest: MyList[A]) extends MyList[A]
 case object Empty                             extends MyList[Nothing]
 ```
 
+###### Example
+
+```scala
+import net.{Cons, Empty, MyList}
+
+val ints: MyList[Int] = Cons(1, Cons(2, Empty) )
+```
+
 ##### MyList#reverse
 
 ```scala
@@ -49,12 +57,6 @@ def reverse[A](list: MyList[A]): MyList[A] = list match {
 	case Cons(elem, rest) => append( reverse(rest), Cons(elem, Empty) )
 	case Empty            => Empty
 }
-```
-
-```scala
-import net.{Cons, Empty, MyList}
-
-val ints: MyList[Int] = Cons(1, Cons(2, Empty) )
 ```
 
 #### Test Code (Property + Generator)
