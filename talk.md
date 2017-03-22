@@ -51,6 +51,12 @@ def reverse[A](list: MyList[A]): MyList[A] = list match {
 }
 ```
 
+```scala
+import net.{Cons, Empty, MyList}
+
+val ints: MyList[Int] = Cons(1, Cons(2, Empty) )
+```
+
 #### Test Code (Property + Generator)
 
 ##### Properties
