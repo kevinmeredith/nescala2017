@@ -14,7 +14,7 @@
 ### Definitions
 
 * Property-Based Testing -
-	* Distinction to Unit Tests: 
+	* Versus Unit Tests
 		> closely related to the difference between specifications 
 		  and tests. (ScalaCheck: Definitive Guide, Nils, Artima)
 * Property
