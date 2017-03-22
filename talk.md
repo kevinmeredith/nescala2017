@@ -16,6 +16,7 @@
 * Property-Based Testing -
 	* Versus Unit Tests
 		> "closely related to the difference between specifications and tests" (ScalaCheck: Definitive Guide).
+	* More powerful and concise than Unit Tests
 * Property
 	* Specifies behavior 
 * Generator
@@ -53,6 +54,7 @@ val ints: MyList[Int] = Cons(1, Cons(2, Empty) )
 ##### MyList#reverse
 
 ```scala
+// reverse ( Cons(1, Cons(2, Empty)) ) == Cons(2, Cons(1, Empty)) 
 def reverse[A](list: MyList[A]): MyList[A] = list match {
 	case Cons(elem, rest) => append( reverse(rest), Cons(elem, Empty) )
 	case Empty            => Empty
@@ -64,6 +66,10 @@ def reverse[A](list: MyList[A]): MyList[A] = list match {
 ##### Properties
 
 ```scala
+
+import org.scalacheck.Prop
+import Prop.forAll        // Gen[A] => (A => Boolean) => Prop *
+
 val reverse2xSame: Prop = forAll(genListInt) { (list: MyList[Int]) => 
 	reverse( reverse( list ) ) == list
 }
@@ -75,8 +81,21 @@ val reverse1xSame: Prop = forAll(genListInt) { (list: MyList[Int]) =>
 ##### Generator
 
 ```scala
+
+import org.scalacheck.Gen
+import Gen.const          // A          => Gen[A]
+import Gen.choose         // (Int, Int) => Gen[Int] *
+import Gen.posNum         // Gen[Int] 
+
+val genListInt: Gen[MyList[Int]] = for {
+	depth <- choose(0, 25)                // choose a max depth
+	list  <- genList(posNum[Int], depth)  // pass the random 'depth' positive int to `genList`
+} yield list
+```
+
+```scala
 private def genList[A](gen: Gen[A], depth: Int): Gen[MyList[A]] = {
-	if(depth <= 0) {        // terminate the recursive data structure with a `Empty`
+	if(depth <= 0) {        // terminate the recursive data structure with an `Empty`
 		genEmpty
 	}
 	else {                  // Otherwise, use Cons to build up the generated `MyList[A]`
@@ -92,7 +111,7 @@ scala> net.MySpec.genListInt.sample
 res6: Option[net.MyList[Int]] = Some(Cons(27,Empty))
 
 scala> net.MySpec.genListInt.sample
-res7: Option[net.MyList[Int]] = Some(Cons(59,Cons(24,Cons(7,Cons(43,Cons(33,Cons(95,Cons(13,Cons(54,Cons(48,Cons(62,Cons(51,Cons(69,Cons(14,Cons(5,Cons(44,Cons(11,Empty)))))))))))))))))
+res7: Option[net.MyList[Int]] = Some(Cons(59,Cons(24,Cons(7,Cons(43,Cons(33, Empty))))))
 ```
 
 ##### `Empty` Generator
@@ -104,7 +123,6 @@ private val genEmpty: Gen[MyList[Nothing]] = Gen.const(Empty)
 ###### `Cons` Generator
 
 ```scala
-// Cons case, i.e. building up the `MyList[A]`
 private def genCons[A](gen: Gen[A], depth: Int): Gen[MyList[A]] = 
 	for {
 		list <- genList(gen, depth-1)
