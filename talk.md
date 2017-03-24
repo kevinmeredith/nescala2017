@@ -1,5 +1,7 @@
 # Property-based Testing with ScalaCheck by Example 
 
+https://github.com/rickynils/scalacheck
+
 ## Info
 
 * Kevin Meredith (@Gentmen)
