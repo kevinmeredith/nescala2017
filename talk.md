@@ -90,8 +90,8 @@ import Gen.choose         // (Int, Int) => Gen[Int] *
 import Gen.posNum         // Gen[Int] 
 
 val genListInt: Gen[MyList[Int]] = for {
-	depth <- choose(0, 25)                // choose a max depth
-	list  <- genList(posNum[Int], depth)  // pass the random 'depth' positive int to `genList`
+	depth <- choose(0, 25)                // choose a depth between 0 and 25
+	list  <- genList(posNum[Int], depth)  // produce a `Gen[MyList[Int]]`
 } yield list
 ```
 
