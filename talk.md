@@ -8,6 +8,7 @@ https://github.com/rickynils/scalacheck
 * Banno
 	* We are working to allow better communication between financial institutions and their consumers.
 	* We're Hiring - email careers@banno.com
+* Talk - kevinmeredith/nescala2017
 
 ## Agenda
 
