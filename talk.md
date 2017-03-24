@@ -15,8 +15,8 @@
 
 * Property-Based Testing
 	* In comparison to Unit Testing:
-		> "closely related to the difference between specifications and tests" (ScalaCheck: Definitive Guide).
-	* More powerful and concise than Unit Tests
+		* > "closely related to the difference between specifications and tests" (ScalaCheck: Definitive Guide).
+		* More powerful and concise
 * Property
 	* Specifies behavior 
 * Generator
