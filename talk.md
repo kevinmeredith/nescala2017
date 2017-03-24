@@ -20,7 +20,7 @@
 * Property
 	* Specifies behavior 
 * Generator
-	* Generates test data to be used when testing the property
+	* Generates test data to be used when testing properties
 
 ### Code Example
 
