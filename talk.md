@@ -1,4 +1,4 @@
-# Property-based Testing with ScalaCheck by Example (Mar-2017)
+# Property-based Testing with ScalaCheck by Example 
 
 ## Info
 
