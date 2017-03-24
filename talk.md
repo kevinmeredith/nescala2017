@@ -70,6 +70,8 @@ def reverse[A](list: MyList[A]): MyList[A] = list match {
 import org.scalacheck.Prop
 import Prop.forAll        // Gen[A] => (A => Boolean) => Prop *
 
+val genListInt: Gen[MyList[Int]] = ... 
+
 val reverse2xSame: Prop = forAll(genListInt) { (list: MyList[Int]) => 
 	reverse( reverse( list ) ) == list
 }
