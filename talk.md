@@ -6,23 +6,26 @@ https://github.com/rickynils/scalacheck
 
 * Kevin Meredith (@Gentmen)
 * Banno
+	* We are working to allow better communication between financial institutions and their consumers.
+	* We're Hiring - email careers@banno.com
 
 ## Agenda
 
 * Definitions
 * Code Example
-* Summary
+* References
 
 ### Definitions
 
 * Property-Based Testing
 	* In comparison to Unit Testing:
-		* > "closely related to the difference between specifications and tests" (ScalaCheck: Definitive Guide).
+		* > "closely related to the difference between specifications and tests" (ScalaCheck: Definitive Guide)
 		* More powerful and concise
 * Property
 	* Specifies behavior 
 * Generator
 	* Generates test data to be used when testing properties
+* ScalaCheck integrates with ScalaTest and Specs2 Test Libraries
 
 ### Code Example
 
