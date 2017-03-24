@@ -137,14 +137,15 @@ private def genCons[A](gen: Gen[A], depth: Int): Gen[MyList[A]] =
 #### Valid Property
 
 ```
-scala> net.MySpec.reverse2x.check
+scala> net.MySpec.reverse2xSame.check
 + OK, passed 100 tests.
 ```
 
 #### Invalid Property 
 
 ```
-scala> net.MySpec.invalid.check
+scala> net.MySpec.
+.check
 ! Falsified after 2 passed tests.
 > ARG_0: Cons(2,Cons(2,Cons(2,Cons(2,Cons(1,Cons(2,Cons(1,Empty)))))))
 ```
